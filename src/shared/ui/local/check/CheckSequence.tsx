@@ -1,33 +1,33 @@
 import { useState } from "react";
-import { CheckItem, CheckItemProps } from "./CheckItem";
+import { CheckItem, CheckItemProps, CheckItemInterface } from "./CheckItem";
+
+import { v4 as uuidv4 } from "uuid";
 
 export const CheckSequence = () => {
-  const ffre: CheckItemProps[] = [{}, {}, {}];
+  const ffre: CheckItemInterface[] = [{ id: uuidv4() }, { id: uuidv4() }, { id: uuidv4() }];
 
   const [items, setItems] = useState(ffre);
 
-  const handleClick = (index: number) => {
-    return () => {
-      const newItems: CheckItemProps[] = items.map((item, i) => {
-        if (index === i) {
-          return {
-            ...item,
-            state: item.state === "checked" ? undefined : item.state === "subChecked" ? "checked" : "subChecked",
-          };
-        }
-        return item;
-      });
+  const handleClick = (id: string) => {
+    const newItems: CheckItemInterface[] = items.map((item, i) => {
+      if (id === item.id) {
+        return {
+          ...item,
+          state: item.state === "checked" ? undefined : item.state === "subChecked" ? "checked" : "subChecked",
+        };
+      }
+      return item;
+    });
 
-      setItems(newItems);
-    };
+    setItems(newItems);
   };
 
   return (
     <div className="check-sequence">
-      {items.map((item, index) => {
+      {items.map((item) => {
         return (
-          <div className="check-sequence__item">
-            <CheckItem onCLick={handleClick(index)} state={item.state} side={item.side} key={index} />
+          <div className="check-sequence__item" key={item.id}>
+            <CheckItem onCLick={handleClick} item={item} />
           </div>
         );
       })}
