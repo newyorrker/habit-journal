@@ -20,11 +20,11 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@app/*": ["./src/app/*"]
+      "@app/*": ["./src/app/*"],
       // "@pages/*": ["./src/pages/*"],
       // "@features": ["./src/features"],
       // "@widgets": ["./src/widgets"],
-      // "@shared*": ["./src/shared*"],
+      "@shared*": ["./src/shared*"]
       // "@entites/*": ["./src/entities/*"]
     }
   },
