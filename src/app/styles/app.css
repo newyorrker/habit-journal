@@ -4,8 +4,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, Inter, "Segoe UI",
-    Roboto, Helvetica;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, Inter, "Segoe UI", Roboto, Helvetica;
   line-height: 1.5;
   font-weight: 400;
 

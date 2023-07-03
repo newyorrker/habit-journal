@@ -8,17 +8,11 @@ export const CheckSequence = () => {
 
   const handleClick = (index: number) => {
     return () => {
-      console.log(index);
       const newItems: CheckItemProps[] = items.map((item, i) => {
         if (index === i) {
           return {
             ...item,
-            state:
-              item.state === "checked"
-                ? undefined
-                : item.state === "subChecked"
-                ? "checked"
-                : "subChecked",
+            state: item.state === "checked" ? undefined : item.state === "subChecked" ? "checked" : "subChecked",
           };
         }
         return item;
@@ -33,12 +27,7 @@ export const CheckSequence = () => {
       {items.map((item, index) => {
         return (
           <div className="check-sequence__item">
-            <CheckItem
-              onCLick={handleClick(index)}
-              state={item.state}
-              side={item.side}
-              key={index}
-            />
+            <CheckItem onCLick={handleClick(index)} state={item.state} side={item.side} key={index} />
           </div>
         );
       })}

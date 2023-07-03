@@ -41,7 +41,7 @@
     "vite": "^4.3.9"
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 999,
     "overrides": [
       {
         "files": [
