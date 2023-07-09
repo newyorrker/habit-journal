@@ -1,16 +1,10 @@
 import "./style.scss";
+import { CheckItemRaw, CheckItemView, Position } from "./types";
 
 const color = "#475569";
 
-export interface CheckItemInterface {
-  id: string;
-  state?: "checked" | "subChecked";
-  side?: "center" | "left" | "right";
-  isSingle?: boolean;
-}
-
 export interface CheckItemProps {
-  item: CheckItemInterface;
+  item: CheckItemRaw;
   onCLick?: (id: string) => void;
 }
 
@@ -27,24 +21,25 @@ const dict = {
     center: <path fill={color} fillRule="evenodd" clipRule="evenodd" d="M24 3c2 1.5 4 3 8 3v12c-4 0-6 1.5-8 3s-4 3-8 3-6-1.5-8-3-4-3-8-3V6c4 0 6-1.5 8-3s4-3 8-3 6 1.5 8 3Zm-8 2a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z" />,
     single: <path fill={color} fillRule="evenodd" clipRule="evenodd" d="M16 24c6.627 0 12-5.373 12-12S22.627 0 16 0 4 5.373 4 12s5.373 12 12 12Zm0-19a7 7 0 1 0 0 14 7 7 0 0 0 0-14Z" />,
   },
-  empty: <circle cx="16" cy="12" r="11.5" stroke="#475569" />,
+  empty: <circle cx="16" cy="12" r="11.5" stroke={color} />,
 };
 
-export const CheckItem = ({ item: { isSingle, side, state, id }, onCLick }: CheckItemProps) => {
+const getViewItem = (rawItem: CheckItemRaw): CheckItemView => {
+  return {
+    ...rawItem,
+    position: rawItem.position ?? Position.single,
+  };
+};
+
+export const CheckItem = ({ item, onCLick }: CheckItemProps) => {
   let child;
 
-  if (!side) {
-    side = "center";
-  }
-
-  if (!isSingle) {
-    isSingle = true;
-  }
+  const { state, position, id } = getViewItem(item);
 
   if (state === "checked") {
-    child = isSingle ? dict.checked.single : dict.checked[side];
+    child = dict.checked[position];
   } else if (state === "subChecked") {
-    child = isSingle ? dict.subChecked.single : dict.subChecked[side];
+    child = dict.subChecked[position];
   } else {
     child = dict.empty;
   }
