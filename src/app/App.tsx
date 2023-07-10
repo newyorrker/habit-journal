@@ -1,11 +1,17 @@
-import { useState } from "react";
 import "./styles/app.css";
-import { CheckSequence } from "@shared/ui/local/check";
+
+import { Day } from "@shared/ui/local/day";
+import { MonthControl } from "@shared/ui/local/month-control";
+
+import { HabitsList } from "@features";
 
 function App() {
   return (
     <>
-      <CheckSequence />
+      <MonthControl />
+      <Day />
+
+      <HabitsList />
     </>
   );
 }

@@ -9,7 +9,7 @@ const getState = (item: Partial<CheckItemBase>) => {
 };
 
 const getPositionForLeft = (hasState: boolean, currentPosition: Position): Position => {
-  if(hasState) {
+  if (hasState) {
     switch (currentPosition) {
       case Position.right:
         return Position.center;
@@ -17,8 +17,7 @@ const getPositionForLeft = (hasState: boolean, currentPosition: Position): Posit
       case Position.single:
         return Position.left;
     }
-  }
-  else {
+  } else {
     switch (currentPosition) {
       case Position.left:
         return Position.single;
@@ -29,10 +28,10 @@ const getPositionForLeft = (hasState: boolean, currentPosition: Position): Posit
   }
 
   return currentPosition;
-}
+};
 
 const getPositionForRight = (hasState: boolean, currentPosition: Position): Position => {
-  if(hasState) {
+  if (hasState) {
     switch (currentPosition) {
       case Position.left:
         return Position.center;
@@ -40,8 +39,7 @@ const getPositionForRight = (hasState: boolean, currentPosition: Position): Posi
       case Position.single:
         return Position.right;
     }
-  }
-  else {
+  } else {
     switch (currentPosition) {
       case Position.right:
         return Position.single;
@@ -52,7 +50,7 @@ const getPositionForRight = (hasState: boolean, currentPosition: Position): Posi
   }
 
   return currentPosition;
-}
+};
 
 export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
   let targetIndex = 0;
@@ -89,7 +87,6 @@ export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
   }
 
   if (targetItem.state) {
-
     if (isFirstItem && rightItem.state) {
       targetItem.position = Position.left;
     }
@@ -111,14 +108,41 @@ export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
         targetItem.position = Position.center;
       }
     }
-
   }
 
   return arr;
 };
 
 export const CheckSequence = () => {
-  const itemsList: CheckItemRaw[] = [{ id: uuidv4() }, { id: uuidv4() }, { id: uuidv4() }, { id: uuidv4() }, { id: uuidv4() }];
+  const itemsList: CheckItemRaw[] = [
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+    { id: uuidv4() },
+
+    { id: uuidv4() },
+    { id: uuidv4() },
+];
 
   const [items, setItems] = useState<CheckItemRaw[]>(itemsList);
 

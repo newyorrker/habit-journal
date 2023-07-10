@@ -22,7 +22,7 @@
     "paths": {
       "@app/*": ["./src/app/*"],
       // "@pages/*": ["./src/pages/*"],
-      // "@features": ["./src/features"],
+      "@features": ["./src/features"],
       // "@widgets": ["./src/widgets"],
       "@shared*": ["./src/shared*"]
       // "@entites/*": ["./src/entities/*"]

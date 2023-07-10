@@ -1,0 +1,13 @@
+.habit-row {
+  display: flex;
+  align-items: center;
+
+  &__name {
+    width: 220px;
+    margin-right: 0.75rem;
+  }
+
+  &__items {
+    flex: 1;
+  }
+}

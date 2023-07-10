@@ -1,0 +1,27 @@
+.habit-name {
+
+
+  &__title {
+    color: var(--slate-600);
+    /* body */
+    font-size: 0.875rem;
+    font-family: SF Pro;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.25rem;
+    border-radius: 0.375rem;
+    padding: .5rem .75rem;
+
+    @apply transition-colors;
+
+    &:hover {
+      background-color: var(--slate-100);
+    }
+  }
+}
+
+.habits-list {
+  & > div + div {
+    margin-top: 0.5rem;
+  }
+}
