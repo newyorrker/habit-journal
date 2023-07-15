@@ -3,7 +3,8 @@
   align-items: center;
 
   &__name {
-    width: 220px;
+    min-width: var(--sidebar-width);
+    width: var(--sidebar-width);
     margin-right: 0.75rem;
   }
 

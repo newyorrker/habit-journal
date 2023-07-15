@@ -4,9 +4,9 @@ import { HabitsList } from "@features";
 
 function App() {
   return (
-    <>
+    <main>
       <HabitsList />
-    </>
+    </main>
   );
 }
 

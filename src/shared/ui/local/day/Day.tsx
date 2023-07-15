@@ -1,6 +1,6 @@
 import "./styles.scss";
 
-export const Day = () => {
+export const Day = ({ day }: {day: string}) => {
   return (
     <div className="day">
       <div className="day__number">
@@ -8,7 +8,7 @@ export const Day = () => {
       </div>
 
       <div className="day__title">
-        <span>Sun</span>
+        <span>{day}</span>
       </div>
     </div>
   );

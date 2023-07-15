@@ -2,16 +2,25 @@ import { Day } from "@shared/ui/local/day";
 
 import "./styles.scss";
 
-export const HabitsDays = () => {
+const dayTitles = [
+  "Mon",
+  "Tue",
+  "Wed",
+  "Tue",
+  "Fri",
+  "Sat",
+  "Sun"
+]
+
+export const HabitsDays = ({days}: {days: Record<string, any>[]}) => {
+
   return (
     <div className="habits-days">
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
-      <Day />
+      {days.map(day => {
+        return (
+          <Day day={dayTitles[day.day%7]} key={day.day} />
+        )
+      })}
     </div>
   )
 }

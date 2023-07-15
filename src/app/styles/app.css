@@ -8,6 +8,8 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --sidebar-width: 220px;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -21,6 +23,35 @@
 
 body {
 }
+
+main {
+  padding: 40px;
+  margin: 0 auto;
+
+  background-color: orange;
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 1366px) {
+  main {
+    max-width: 1300px;
+  }
+}
+
+@media screen and (min-width: 1536px) {
+  main {
+    max-width: 1400px;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  main {
+    max-width: 1800px;
+  }
+}
+
 
 @media (prefers-color-scheme: light) {
   :root {

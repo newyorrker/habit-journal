@@ -20,6 +20,9 @@ dependencies:
   lucide-react:
     specifier: ^0.257.0
     version: 0.257.0(react@18.2.0)
+  luxon:
+    specifier: ^3.3.0
+    version: 3.3.0
   normalize.css:
     specifier: ^8.0.1
     version: 8.0.1
@@ -1623,6 +1626,11 @@ packages:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
       react: 18.2.0
+    dev: false
+
+  /luxon@3.3.0:
+    resolution: {integrity: sha512-An0UCfG/rSiqtAIiBPO0Y9/zAnHUZxAMiCpTd5h2smgsj7GGmcenvrvww2cqNA8/4A5ZrD1gJpHN2mIHZQF+Mg==}
+    engines: {node: '>=12'}
     dev: false
 
   /magic-string@0.30.1:
