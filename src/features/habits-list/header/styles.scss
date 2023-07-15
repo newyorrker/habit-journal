@@ -1,0 +1,12 @@
+.habits-days {
+  display: flex;
+}
+
+.habits-list-header {
+  display: flex;
+
+  &__month {
+    width: 220px;
+    margin-right: .75rem;
+  }
+}
