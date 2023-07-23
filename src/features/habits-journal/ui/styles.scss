@@ -1,0 +1,52 @@
+
+.sidebar {
+  width: var(--sidebar-width);
+}
+
+.main {
+  overflow: auto;
+}
+
+.habits-marks {
+  margin-top: 8px;
+
+  & > div {
+    background-color: rgb(148, 234, 162);
+  }
+
+  & > div + div {
+    margin-top: 8px;
+
+
+  }
+}
+
+.habits-schedule {
+  display: grid;
+  overflow: auto;
+}
+
+
+
+.habits-list-header {
+  display: flex;
+
+  &__month {
+    min-width: var(--sidebar-width);
+    width: var(--sidebar-width);
+    margin-right: .75rem;
+  }
+}
+
+.sidebar + .main {
+  margin-left: 8px;
+}
+
+.habits-journal {
+  display: flex;
+  background-color: beige;
+
+  &__content {
+    overflow: auto;
+  }
+}

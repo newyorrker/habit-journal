@@ -1,3 +1,11 @@
-.check-sequence {
+.check-item {
+  display: block;
+}
+
+.mark-sequence {
   display: flex;
+
+  &__item {
+    padding: 6px 0;
+  }
 }

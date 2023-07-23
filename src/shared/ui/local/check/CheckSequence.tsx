@@ -151,10 +151,10 @@ export const CheckSequence = () => {
   };
 
   return (
-    <div className="check-sequence">
+    <div className="mark-sequence">
       {items.map((item) => {
         return (
-          <div className="check-sequence__item" key={item.id}>
+          <div className="mark-sequence__item" key={item.id}>
             <CheckItem onCLick={updateArray} item={item} />
           </div>
         );
