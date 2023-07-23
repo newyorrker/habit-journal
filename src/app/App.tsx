@@ -1,11 +1,11 @@
 import "./styles/app.css";
 
-import { HabitsList } from "@features";
+import { HabitsJournal } from "@features";
 
 function App() {
   return (
     <main>
-      <HabitsList />
+      <HabitsJournal />
     </main>
   );
 }
