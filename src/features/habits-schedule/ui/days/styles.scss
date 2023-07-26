@@ -1,4 +1,5 @@
 .habits-days {
   display: grid;
+  grid-template-columns: repeat(auto-fit, 32px);
   grid-auto-flow: column;
 }

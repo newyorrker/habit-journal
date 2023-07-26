@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { HabitListItem } from "./item/HabitListItem";
+import "./styles.scss";
 
 export const HabitsList = ({header}: { header: ReactNode}) => {
   return (
