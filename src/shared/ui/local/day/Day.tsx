@@ -1,10 +1,10 @@
 import "./styles.scss";
 
-export const Day = ({ day }: {day: string}) => {
+export const Day = ({ day, number }: {day: string; number: number}) => {
   return (
     <div className="day">
       <div className="day__number">
-        <span>12</span>
+        <span>{number}</span>
       </div>
 
       <div className="day__title">

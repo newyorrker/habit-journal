@@ -46,6 +46,9 @@ dependencies:
     version: 9.0.0
 
 devDependencies:
+  '@types/luxon':
+    specifier: ^3.3.1
+    version: 3.3.1
   '@types/node':
     specifier: ^20.3.3
     version: 20.3.3
@@ -605,6 +608,10 @@ packages:
 
   /@types/json-schema@7.0.12:
     resolution: {integrity: sha512-Hr5Jfhc9eYOQNPYO5WLDq/n4jqijdHNlDXjuAQkkt+mWdQR+XJToOHrsD4cPaMXpn6KO7y2+wM8AZEs8VpBLVA==}
+    dev: true
+
+  /@types/luxon@3.3.1:
+    resolution: {integrity: sha512-XOS5nBcgEeP2PpcqJHjCWhUCAzGfXIU8ILOSLpx2FhxqMW9KdxgCGXNOEKGVBfveKtIpztHzKK5vSRVLyW/NqA==}
     dev: true
 
   /@types/node@20.3.3:

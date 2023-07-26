@@ -1,5 +1,5 @@
 import { Day } from "@shared/ui/local/day";
-
+import { Month } from "../types";
 import "./styles.scss";
 
 const dayTitles = [
@@ -10,16 +10,17 @@ const dayTitles = [
   "Fri",
   "Sat",
   "Sun"
-]
+];
 
-export const HabitsDays = ({days}: {days: Record<string, any>[]}) => {
+interface Props {
+  months: Month[];
+}
 
+export const HabitsDays = ({months}: Props) => {
   return (
     <div className="habits-days">
-      {days.map(day => {
-        return (
-          <Day day={dayTitles[day.day%7]} key={day.day} />
-        )
+      {months.map((month) => {
+        return month.days.map((day, index) => <Day day={dayTitles[day.weekDay - 1]} number={day.day} key={index} />)
       })}
     </div>
   )
