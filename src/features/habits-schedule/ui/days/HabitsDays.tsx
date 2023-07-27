@@ -20,7 +20,7 @@ export const HabitsDays = ({months}: Props) => {
   return (
     <div className="habits-days">
       {months.map((month) => {
-        return month.days.map((day, index) => <Day day={dayTitles[day.weekDay - 1]} number={day.day} key={index} />)
+        return month.map((day, index) => <Day day={dayTitles[day.weekDay - 1]} number={day.day} key={index} />)
       })}
     </div>
   )

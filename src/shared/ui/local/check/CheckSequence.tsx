@@ -1,66 +1,66 @@
-import { useState } from "react";
-import { CheckItemBase, Position, CheckItemView, CheckItemRaw } from "./types";
+import { MarkPosition, MarkView, MarkState } from "./types";
 import { CheckItem } from "./CheckItem";
 
-import { v4 as uuidv4 } from "uuid";
-
-const getState = (item: Partial<CheckItemBase>) => {
-  return item.state === "checked" ? undefined : item.state === "subChecked" ? "checked" : "subChecked";
+const getState = (item: Partial<MarkView>) => {
+  return item.state === MarkState.done ? undefined : item.state === MarkState.planned ? MarkState.done : MarkState.planned;
 };
 
-const getPositionForLeft = (hasState: boolean, currentPosition: Position): Position => {
+const getPositionForLeft = (hasState: boolean, currentPosition: MarkPosition): MarkPosition => {
   if (hasState) {
     switch (currentPosition) {
-      case Position.right:
-        return Position.center;
+      case MarkPosition.right:
+        return MarkPosition.center;
 
-      case Position.single:
-        return Position.left;
+      case MarkPosition.single:
+        return MarkPosition.left;
     }
   } else {
     switch (currentPosition) {
-      case Position.left:
-        return Position.single;
+      case MarkPosition.left:
+        return MarkPosition.single;
 
-      case Position.center:
-        return Position.right;
+      case MarkPosition.center:
+        return MarkPosition.right;
     }
   }
 
   return currentPosition;
 };
 
-const getPositionForRight = (hasState: boolean, currentPosition: Position): Position => {
+const getPositionForRight = (hasState: boolean, currentPosition: MarkPosition): MarkPosition => {
   if (hasState) {
     switch (currentPosition) {
-      case Position.left:
-        return Position.center;
+      case MarkPosition.left:
+        return MarkPosition.center;
 
-      case Position.single:
-        return Position.right;
+      case MarkPosition.single:
+        return MarkPosition.right;
     }
   } else {
     switch (currentPosition) {
-      case Position.right:
-        return Position.single;
+      case MarkPosition.right:
+        return MarkPosition.single;
 
-      case Position.center:
-        return Position.left;
+      case MarkPosition.center:
+        return MarkPosition.left;
     }
   }
 
   return currentPosition;
 };
 
-export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
-  let targetIndex = 0;
+export const updateItems = (targetIndex: number, prevArray: MarkView[]) => {
+  if(!prevArray.length) {
+    return [];
+  }
 
-  const arr = prevArray.map((item, index): CheckItemView => {
-    const newItem: CheckItemView = { ...item, position: item.position ?? Position.single };
+  const arr = prevArray.map((item, index): MarkView => {
+    const newItem: MarkView = { ...item, position: item.position ?? MarkPosition.single };
 
-    if (newItem.id === id) {
+    if (targetIndex === index) {
       targetIndex = index;
-      return { ...newItem, state: getState(item) };
+      const state = getState(item);
+      return { ...newItem, state };
     }
 
     return newItem;
@@ -71,8 +71,8 @@ export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
 
   const targetItem = arr[targetIndex];
 
-  if (!targetItem.state) {
-    targetItem.position = Position.single;
+  if (!targetItem?.state) {
+    targetItem.position = MarkPosition.single;
   }
 
   const leftItem = arr[targetIndex - 1];
@@ -88,74 +88,47 @@ export const updateItems = (id: string, prevArray: CheckItemRaw[]) => {
 
   if (targetItem.state) {
     if (isFirstItem && rightItem.state) {
-      targetItem.position = Position.left;
+      targetItem.position = MarkPosition.left;
     }
 
     if (isLastItem && leftItem.state) {
-      targetItem.position = Position.right;
+      targetItem.position = MarkPosition.right;
     }
 
     if (!isFirstItem && !isLastItem) {
       if (leftItem.state) {
-        targetItem.position = Position.right;
+        targetItem.position = MarkPosition.right;
       }
 
       if (rightItem.state) {
-        targetItem.position = Position.left;
+        targetItem.position = MarkPosition.left;
       }
 
       if (leftItem.state && rightItem.state) {
-        targetItem.position = Position.center;
+        targetItem.position = MarkPosition.center;
       }
     }
   }
-
   return arr;
 };
 
-export const CheckSequence = () => {
-  const itemsList: CheckItemRaw[] = [
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
+interface Props {
+  items: MarkView[];
+  setItems: (cb: (prevArray: MarkView[]) => MarkView[]) => void;
+}
 
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
-    { id: uuidv4() },
+export const CheckSequence = ({ items, setItems }: Props) => {
 
-    { id: uuidv4() },
-    { id: uuidv4() },
-];
-
-  const [items, setItems] = useState<CheckItemRaw[]>(itemsList);
-
-  const updateArray = (id: string) => {
-    setItems((prevArray) => updateItems(id, prevArray));
+  const updateArray = (index: number) => {
+    setItems((prevArray) => updateItems(index, prevArray));
   };
 
   return (
     <div className="mark-sequence">
-      {items.map((item) => {
+      {items.map((item, index) => {
         return (
-          <div className="mark-sequence__item" key={item.id}>
-            <CheckItem onCLick={updateArray} item={item} />
+          <div className="mark-sequence__item" key={index}>
+            <CheckItem onCLick={() => updateArray(index)} item={item} />
           </div>
         );
       })}
