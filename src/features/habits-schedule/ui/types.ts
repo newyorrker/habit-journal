@@ -1,11 +1,7 @@
-import { DateTime } from "luxon";
 
-interface Day {
+export interface Day {
   weekDay: number;
   day: number;
 }
 
-export interface Month {
-  days: Day[];
-  date: DateTime;
-}
+export type Month = Day[];

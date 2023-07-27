@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 import { Input } from "@shared/ui/shadcn";
 
 import "./styles.scss"
@@ -28,7 +28,7 @@ export const HabitName = () => {
     }
   }
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   }
 
